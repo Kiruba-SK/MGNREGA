@@ -6,13 +6,12 @@ from .settings import *
 DEBUG = False
 SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-secret-key')
 
-# Allowed Hosts
-RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-if RENDER_EXTERNAL_HOSTNAME:
-    ALLOWED_HOSTS = [RENDER_EXTERNAL_HOSTNAME, f'https://{RENDER_EXTERNAL_HOSTNAME}']
-    CSRF_TRUSTED_ORIGINS = [f'https://{RENDER_EXTERNAL_HOSTNAME}']
-else:
-    ALLOWED_HOSTS = ['*']
+# Allowed hosts and CSRF settings
+ALLOWED_HOSTS = [os.environ.get('RENDER_EXTERNAL_HOSTNAME')]
+CSRF_TRUSTED_ORGINS = [
+    'https://jobzone-red.vercel.app',
+    'https://'+os.environ.get('RENDER_EXTERNAL_HOSTNAME'),
+]
 
 # Middleware 
 MIDDLEWARE = [
