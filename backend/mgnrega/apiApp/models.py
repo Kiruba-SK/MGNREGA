@@ -41,7 +41,7 @@ class MGNREGAData(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'apiApp_mgnrega'
+        db_table = 'apiApp_mgnregadata'
 
     def __str__(self):
         return f"{self.district_name} ({self.month} - {self.fin_year})"
