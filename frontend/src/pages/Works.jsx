@@ -90,9 +90,9 @@ const Works = () => {
                 outerRadius={100}
                 innerRadius={60}
                 labelLine={false}
-                // label={({ name, percent }) =>
-                //   `${name}: ${(percent * 100).toFixed(1)}%`
-                // }
+                label={({ name, percent }) =>
+                  `${name}: ${(percent * 100).toFixed(1)}%`
+                }
               >
                 {worksSummary.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.color} />
@@ -132,9 +132,9 @@ const Works = () => {
                   `${name}: ${(percent * 100).toFixed(1)}%`
                 }
               >
-                {expenditureData.map((entry, index) => (
+                {/* {expenditureData.map((entry, index) => (
                   <Cell key={`cell-exp-${index}`} fill={entry.color} />
-                ))}
+                ))} */}
               </Pie>
               <Tooltip
                 formatter={(value) =>
@@ -145,7 +145,7 @@ const Works = () => {
               <Legend
                 verticalAlign="bottom"
                 height={36}
-                wrapperStyle={{ fontSize: 10 }}
+                wrapperStyle={{ fontSize: 13 }}
               />
             </PieChart>
           </ResponsiveContainer>

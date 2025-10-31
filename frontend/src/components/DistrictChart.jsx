@@ -10,12 +10,44 @@ import {
 } from "recharts";
 
 const DistrictChart = ({ data }) => {
-  const chartData = data.slice(0, 10);
+  // ✅ 1. Group data by district_name (to merge duplicates from multiple states)
+  const groupedData = data.reduce((acc, item) => {
+    const district = item.district_name;
+    if (!acc[district]) {
+      acc[district] = {
+        district_name: district,
+        total_days: 0,
+        total_wage: 0,
+        count: 0,
+      };
+    }
 
+    acc[district].total_days += item.avg_days_employment || 0;
+    acc[district].total_wage += item.avg_wage_rate || 0;
+    acc[district].count += 1;
+    return acc;
+  }, {});
+
+  // ✅ 2. Calculate average values per district
+  const averagedData = Object.values(groupedData).map((district) => ({
+    district_name: district.district_name,
+    avg_days_employment: district.total_days / district.count,
+    avg_wage_rate: district.total_wage / district.count,
+  }));
+
+  // ✅ 3. Sort districts by average employment (you can switch to avg_wage_rate if needed)
+  const sortedData = averagedData.sort(
+    (a, b) => b.avg_days_employment - a.avg_days_employment
+  );
+
+  // ✅ 4. Take top 10 districts
+  const chartData = sortedData.slice(0, 10);
+
+  // ✅ 5. Chart UI
   return (
     <div className="w-full h-[34rem] bg-gradient-to-b from-white to-gray-50 p-10 rounded-2xl shadow-lg border border-gray-200">
       <h2 className="text-2xl font-bold mb-6 text-center text-gray-800 tracking-wide">
-        Employment & Wage Analytics (Top 10 Districts)
+        Employment & Wage Analytics (Top 10 Districts Across All States)
       </h2>
 
       <div className="w-full h-[32rem] overflow-hidden">
@@ -25,7 +57,7 @@ const DistrictChart = ({ data }) => {
             margin={{ top: 30, right: 40, left: 10, bottom: 100 }}
             barGap={12}
           >
-            {/* Subtle background grid */}
+            {/* Grid */}
             <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
 
             {/* X-Axis */}
@@ -43,7 +75,7 @@ const DistrictChart = ({ data }) => {
             <YAxis
               tick={{ fontSize: 13, fill: "#4b5563" }}
               label={{
-                value: "Employment / Wage",
+                value: "Employment / Wage (Average)",
                 angle: -90,
                 position: "outsideLeft",
                 fill: "#6b7280",
@@ -103,6 +135,7 @@ const DistrictChart = ({ data }) => {
 };
 
 export default DistrictChart;
+
 
 
 
