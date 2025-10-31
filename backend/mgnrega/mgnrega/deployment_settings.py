@@ -9,7 +9,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-secret-key')
 # Allowed hosts and CSRF settings
 ALLOWED_HOSTS = [os.environ.get('RENDER_EXTERNAL_HOSTNAME')]
 CSRF_TRUSTED_ORGINS = [
-    'https://mgnrega-sage.vercel.app/',
+    'https://mgnrega-sage.vercel.app',
     'https://'+os.environ.get('RENDER_EXTERNAL_HOSTNAME'),
 ]
 
@@ -42,5 +42,5 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # CORS
 CORS_ALLOWED_ORIGINS = [
-    'https://mgnrega-sage.vercel.app/',  
+    'https://mgnrega-sage.vercel.app',  
 ]
