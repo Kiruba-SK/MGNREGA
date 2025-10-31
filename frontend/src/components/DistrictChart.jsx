@@ -10,16 +10,11 @@ import {
 } from "recharts";
 
 const DistrictChart = ({ data }) => {
-  const chartData = data
-    .filter((item) => item.district_name) 
-    .sort((a, b) => b.avg_days_employment - a.avg_days_employment)
-    .slice(0, 10);
-
-  console.log(chartData); 
+  const chartData = data.slice(0, 10);
 
   return (
     <div className="w-full h-[34rem] bg-gradient-to-b from-white to-gray-50 p-10 rounded-2xl shadow-lg border border-gray-200">
-      <h2 className="text-2xl font-bold mb-6 text-center text-gray-700 tracking-wide">
+      <h2 className="text-2xl font-bold mb-6 text-center text-gray-800 tracking-wide">
         Employment & Wage Analytics (Top 10 Districts)
       </h2>
 
@@ -30,17 +25,21 @@ const DistrictChart = ({ data }) => {
             margin={{ top: 30, right: 40, left: 10, bottom: 100 }}
             barGap={12}
           >
+            {/* Subtle background grid */}
             <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
 
+            {/* X-Axis */}
             <XAxis
-              dataKey="district"
+              dataKey="district_name"
               angle={-35}
               textAnchor="end"
               interval={0}
               height={90}
               tick={{ fontSize: 13, fill: "#374151", fontWeight: 500 }}
+              tickMargin={10}
             />
 
+            {/* Y-Axis */}
             <YAxis
               tick={{ fontSize: 13, fill: "#4b5563" }}
               label={{
@@ -54,6 +53,7 @@ const DistrictChart = ({ data }) => {
               tickLine={false}
             />
 
+            {/* Tooltip */}
             <Tooltip
               cursor={{ fill: "rgba(0,0,0,0.05)" }}
               contentStyle={{
@@ -69,6 +69,7 @@ const DistrictChart = ({ data }) => {
               ]}
             />
 
+            {/* Legend */}
             <Legend
               verticalAlign="bottom"
               align="center"
@@ -79,6 +80,7 @@ const DistrictChart = ({ data }) => {
               iconType="circle"
             />
 
+            {/* Bars */}
             <Bar
               dataKey="avg_days_employment"
               name="Avg Days Employment"
@@ -101,6 +103,7 @@ const DistrictChart = ({ data }) => {
 };
 
 export default DistrictChart;
+
 
 
 

@@ -90,9 +90,9 @@ const Works = () => {
                 outerRadius={100}
                 innerRadius={60}
                 labelLine={false}
-                label={({ name, percent }) =>
-                  `${name}: ${(percent * 100).toFixed(1)}%`
-                }
+                // label={({ name, percent }) =>
+                //   `${name}: ${(percent * 100).toFixed(1)}%`
+                // }
               >
                 {worksSummary.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.color} />
@@ -115,7 +115,7 @@ const Works = () => {
         {/* Total Expenditure by Top 10 Districts */}
         <div className="bg-white p-8 rounded-2xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-300">
           <h2 className="text-xl font-semibold text-center mb-5 text-gray-700">
-            Total Expenditure by Top 10 Districts
+            Total Expenditure of Top 10 Districts
           </h2>
           <ResponsiveContainer width="100%" height={320}>
             <PieChart>
@@ -145,7 +145,7 @@ const Works = () => {
               <Legend
                 verticalAlign="bottom"
                 height={36}
-                wrapperStyle={{ fontSize: 13 }}
+                wrapperStyle={{ fontSize: 10 }}
               />
             </PieChart>
           </ResponsiveContainer>
