@@ -12,7 +12,7 @@ import {
 const DistrictChart = ({ data }) => {
   // Ensure proper unique top 10 districts sorted by wage or days
   const chartData = data
-    .filter((item) => item.district) // filter valid ones
+    .filter((item) => item.district_name) // filter valid ones
     .sort((a, b) => b.avg_days_employment - a.avg_days_employment)
     .slice(0, 10);
 
