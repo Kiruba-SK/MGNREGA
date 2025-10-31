@@ -182,7 +182,7 @@ const Districts = () => {
       </div>
 
       {/* Table Section */}
-      <div className="relative max-h-[500px] overflow-y-scroll border rounded-lg shadow-md mb-10">
+      <div className="relative max-h-[500px] overflow-y-scroll border rounded-lg shadow-md pt-2 mb-10">
         <table className="min-w-full border-collapse">
           <thead className="sticky top-0 bg-gray-200 text-gray-700 z-10">
             <tr>

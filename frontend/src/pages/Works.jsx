@@ -132,9 +132,9 @@ const Works = () => {
                   `${name}: ${(percent * 100).toFixed(1)}%`
                 }
               >
-                {/* {expenditureData.map((entry, index) => (
+                {expenditureData.map((entry, index) => (
                   <Cell key={`cell-exp-${index}`} fill={entry.color} />
-                ))} */}
+                ))}
               </Pie>
               <Tooltip
                 formatter={(value) =>

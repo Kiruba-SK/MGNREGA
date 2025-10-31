@@ -26,14 +26,21 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# Database (Render + Supabase)
+# Database configuration
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL'),
-        conn_max_age=600,
-        ssl_require=True,
+    'default' : dj_database_url.config(
+        default = os.environ['DATABASE_URL'],
+        conn_max_age = 600
     )
 }
+# # Database (Render + Supabase)
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default=os.environ.get('DATABASE_URL'),
+#         conn_max_age=600,
+#         ssl_require=True,
+#     )
+# }
 
 # Static files (for Render)
 STATIC_URL = '/static/'

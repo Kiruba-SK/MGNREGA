@@ -10,7 +10,6 @@ import {
 } from "recharts";
 
 const DistrictChart = ({ data }) => {
-  // ✅ 1. Group data by district_name (to merge duplicates from multiple states)
   const groupedData = data.reduce((acc, item) => {
     const district = item.district_name;
     if (!acc[district]) {
@@ -28,26 +27,22 @@ const DistrictChart = ({ data }) => {
     return acc;
   }, {});
 
-  // ✅ 2. Calculate average values per district
   const averagedData = Object.values(groupedData).map((district) => ({
     district_name: district.district_name,
     avg_days_employment: district.total_days / district.count,
     avg_wage_rate: district.total_wage / district.count,
   }));
 
-  // ✅ 3. Sort districts by average employment (you can switch to avg_wage_rate if needed)
   const sortedData = averagedData.sort(
     (a, b) => b.avg_days_employment - a.avg_days_employment
   );
 
-  // ✅ 4. Take top 10 districts
   const chartData = sortedData.slice(0, 10);
 
-  // ✅ 5. Chart UI
   return (
     <div className="w-full h-[34rem] bg-gradient-to-b from-white to-gray-50 p-10 rounded-2xl shadow-lg border border-gray-200">
-      <h2 className="text-2xl font-bold mb-6 text-center text-gray-800 tracking-wide">
-        Employment & Wage Analytics (Top 10 Districts Across All States)
+      <h2 className="text-2xl font-bold mb-6 text-center text-gray-700 tracking-wide">
+        Employment & Wage Analytics (Top 10 Districts)
       </h2>
 
       <div className="w-full h-[32rem] overflow-hidden">
