@@ -75,7 +75,7 @@ const Works = () => {
       {/* Charts Section */}
       <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-10">
         {/* Works Completed vs Ongoing */}
-        <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+        <div className="bg-white p-8 rounded-2xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-300">
           <h2 className="text-xl font-semibold text-center mb-5 text-gray-700">
             Works Completed vs Ongoing
           </h2>
@@ -113,7 +113,7 @@ const Works = () => {
         </div>
 
         {/* Total Expenditure by Top 10 Districts */}
-        <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+        <div className="bg-white p-8 rounded-2xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-300">
           <h2 className="text-xl font-semibold text-center mb-5 text-gray-700">
             Total Expenditure by Top 10 Districts
           </h2>

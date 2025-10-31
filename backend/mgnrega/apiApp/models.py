@@ -47,23 +47,3 @@ class MGNREGAData(models.Model):
         return f"{self.district_name} ({self.month} - {self.fin_year})"
 
     
-# from django.db import models
-
-# # Create your models here.
-
-# class MGNREGAData(models.Model):
-#     fin_year = models.CharField(max_length=20)
-#     month = models.CharField(max_length=20)
-#     district_name = models.CharField(max_length=100)
-#     avg_wage_rate = models.FloatField()
-#     avg_days_employment = models.FloatField()
-#     total_households_worked = models.IntegerField()
-#     total_persondays = models.IntegerField()
-#     total_wages = models.FloatField()
-#     works_completed = models.IntegerField()
-#     women_persondays = models.IntegerField()
-#     percent_payments_15days = models.FloatField()
-#     total_expenditure = models.FloatField()
-
-#     def __str__(self):
-#         return f"{self.district_name} ({self.month} - {self.fin_year})"

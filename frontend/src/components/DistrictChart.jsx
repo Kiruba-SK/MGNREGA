@@ -10,17 +10,16 @@ import {
 } from "recharts";
 
 const DistrictChart = ({ data }) => {
-  // Ensure proper unique top 10 districts sorted by wage or days
   const chartData = data
-    .filter((item) => item.district_name) // filter valid ones
+    .filter((item) => item.district_name) 
     .sort((a, b) => b.avg_days_employment - a.avg_days_employment)
     .slice(0, 10);
 
-  console.log(chartData); // Check what’s being rendered
+  console.log(chartData); 
 
   return (
     <div className="w-full h-[34rem] bg-gradient-to-b from-white to-gray-50 p-10 rounded-2xl shadow-lg border border-gray-200">
-      <h2 className="text-2xl font-bold mb-6 text-center text-gray-800 tracking-wide">
+      <h2 className="text-2xl font-bold mb-6 text-center text-gray-700 tracking-wide">
         Employment & Wage Analytics (Top 10 Districts)
       </h2>
 
