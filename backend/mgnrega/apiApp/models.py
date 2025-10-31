@@ -40,7 +40,8 @@ class MGNREGAData(models.Model):
     remarks = models.CharField(max_length=255, blank=True, null=True, db_column='Remarks')
 
     class Meta:
-        db_table = 'apiApp_mgnrega'  # exact table name in Supabase
+        managed = False
+        db_table = 'apiApp_mgnrega'
 
     def __str__(self):
         return f"{self.district_name} ({self.month} - {self.fin_year})"
