@@ -11,32 +11,19 @@ import {
 } from "recharts";
 
 const DistrictChart = ({ data }) => {
-  const [selectedState, setSelectedState] = useState("All");
-  const [selectedYear, setSelectedYear] = useState("All");
-  const [selectedMonth, setSelectedMonth] = useState("All");
+  const [selectedMetric, setSelectedMetric] = useState("both"); // both | employment | wage
 
-  // Get unique filter options
-  const states = ["All", ...new Set(data.map((d) => d.state_name))];
-  const years = ["All", ...new Set(data.map((d) => d.financial_year))];
-  const months = ["All", ...new Set(data.map((d) => d.month))];
-
-  // Filter data based on selections
-  const filteredData = useMemo(() => {
-    return data.filter((item) => {
-      return (
-        (selectedState === "All" || item.state_name === selectedState) &&
-        (selectedYear === "All" || item.financial_year === selectedYear) &&
-        (selectedMonth === "All" || item.month === selectedMonth)
-      );
-    });
-  }, [data, selectedState, selectedYear, selectedMonth]);
-
-  // Group & average filtered data
+  // --- Group & average data ---
   const groupedData = useMemo(() => {
-    const grouped = filteredData.reduce((acc, item) => {
+    const result = data.reduce((acc, item) => {
       const district = item.district_name;
       if (!acc[district]) {
-        acc[district] = { district_name: district, total_days: 0, total_wage: 0, count: 0 };
+        acc[district] = {
+          district_name: district,
+          total_days: 0,
+          total_wage: 0,
+          count: 0,
+        };
       }
       acc[district].total_days += item.avg_days_employment || 0;
       acc[district].total_wage += item.avg_wage_rate || 0;
@@ -44,62 +31,48 @@ const DistrictChart = ({ data }) => {
       return acc;
     }, {});
 
-    const averaged = Object.values(grouped).map((d) => ({
+    const averaged = Object.values(result).map((d) => ({
       district_name: d.district_name,
       avg_days_employment: d.total_days / d.count,
       avg_wage_rate: d.total_wage / d.count,
     }));
 
     return averaged.sort((a, b) => b.avg_days_employment - a.avg_days_employment).slice(0, 10);
-  }, [filteredData]);
+  }, [data]);
+
+  // --- Chart title text ---
+  const titleText =
+    selectedMetric === "employment"
+      ? "Employment Analytics (Top 10 Districts)"
+      : selectedMetric === "wage"
+      ? "Wage Rate Analytics (Top 10 Districts)"
+      : "Employment & Wage Analytics (Top 10 Districts)";
 
   return (
-    <div className="w-full h-[40rem] bg-gradient-to-b from-white to-gray-50 p-10 rounded-2xl shadow-lg border border-gray-200">
-      <h2 className="text-2xl font-bold mb-8 text-center text-gray-700 tracking-wide">
-        Employment & Wage Analytics (Top 10 Districts Across All States)
-      </h2>
+    <div className="w-full h-[36rem] bg-gradient-to-b from-white to-gray-50 p-10 rounded-2xl shadow-lg border border-gray-200">
+      {/* Title and Filter */}
+      <div className="flex flex-col md:flex-row justify-between items-center mb-8">
+        <h2 className="text-2xl font-bold text-gray-700 tracking-wide text-center md:text-left">
+          {titleText}
+        </h2>
 
-      {/* Filter Section */}
-      <div className="flex flex-wrap justify-center gap-6 mb-8">
-        <select
-          value={selectedState}
-          onChange={(e) => setSelectedState(e.target.value)}
-          className="px-4 py-2 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
-        >
-          {states.map((state) => (
-            <option key={state} value={state}>
-              {state}
-            </option>
-          ))}
-        </select>
-
-        <select
-          value={selectedYear}
-          onChange={(e) => setSelectedYear(e.target.value)}
-          className="px-4 py-2 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
-        >
-          {years.map((year) => (
-            <option key={year} value={year}>
-              {year}
-            </option>
-          ))}
-        </select>
-
-        <select
-          value={selectedMonth}
-          onChange={(e) => setSelectedMonth(e.target.value)}
-          className="px-4 py-2 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
-        >
-          {months.map((month) => (
-            <option key={month} value={month}>
-              {month}
-            </option>
-          ))}
-        </select>
+        {/* Filter Dropdown */}
+        <div className="flex items-center gap-3 mt-4 md:mt-0">
+          <label className="text-gray-600 font-medium text-sm">Show:</label>
+          <select
+            value={selectedMetric}
+            onChange={(e) => setSelectedMetric(e.target.value)}
+            className="px-4 py-2 border border-gray-300 rounded-xl shadow-sm text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          >
+            <option value="both">Employment & Wage Rate</option>
+            <option value="employment">Avg Days Employment</option>
+            <option value="wage">Avg Wage Rate</option>
+          </select>
+        </div>
       </div>
 
-      {/* Chart Section */}
-      <div className="w-full h-[32rem]">
+      {/* Chart */}
+      <div className="w-full h-[30rem]">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={groupedData}
@@ -119,7 +92,12 @@ const DistrictChart = ({ data }) => {
             <YAxis
               tick={{ fontSize: 13, fill: "#4b5563" }}
               label={{
-                value: "Employment / Wage (Average)",
+                value:
+                  selectedMetric === "employment"
+                    ? "Avg Days Employment"
+                    : selectedMetric === "wage"
+                    ? "Avg Wage Rate"
+                    : "Employment / Wage (Average)",
                 angle: -90,
                 position: "outsideLeft",
                 fill: "#6b7280",
@@ -148,20 +126,26 @@ const DistrictChart = ({ data }) => {
               wrapperStyle={{ paddingTop: "25px", fontSize: 13 }}
               iconType="circle"
             />
-            <Bar
-              dataKey="avg_days_employment"
-              name="Avg Days Employment"
-              fill="#16a34a"
-              radius={[8, 8, 0, 0]}
-              barSize={40}
-            />
-            <Bar
-              dataKey="avg_wage_rate"
-              name="Avg Wage Rate"
-              fill="#2563eb"
-              radius={[8, 8, 0, 0]}
-              barSize={40}
-            />
+
+            {/* Conditionally render bars */}
+            {(selectedMetric === "both" || selectedMetric === "employment") && (
+              <Bar
+                dataKey="avg_days_employment"
+                name="Avg Days Employment"
+                fill="#16a34a"
+                radius={[8, 8, 0, 0]}
+                barSize={40}
+              />
+            )}
+            {(selectedMetric === "both" || selectedMetric === "wage") && (
+              <Bar
+                dataKey="avg_wage_rate"
+                name="Avg Wage Rate"
+                fill="#2563eb"
+                radius={[8, 8, 0, 0]}
+                barSize={40}
+              />
+            )}
           </BarChart>
         </ResponsiveContainer>
       </div>
