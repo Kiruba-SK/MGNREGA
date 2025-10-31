@@ -10,7 +10,13 @@ import {
 } from "recharts";
 
 const DistrictChart = ({ data }) => {
-  const chartData = data.slice(0, 10);
+  // Ensure proper unique top 10 districts sorted by wage or days
+  const chartData = data
+    .filter((item) => item.district) // filter valid ones
+    .sort((a, b) => b.avg_days_employment - a.avg_days_employment)
+    .slice(0, 10);
+
+  console.log(chartData); // Check what’s being rendered
 
   return (
     <div className="w-full h-[34rem] bg-gradient-to-b from-white to-gray-50 p-10 rounded-2xl shadow-lg border border-gray-200">
@@ -25,21 +31,17 @@ const DistrictChart = ({ data }) => {
             margin={{ top: 30, right: 40, left: 10, bottom: 100 }}
             barGap={12}
           >
-            {/* Subtle background grid */}
             <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
 
-            {/* X-Axis */}
             <XAxis
-              dataKey="district_name"
+              dataKey="district"
               angle={-35}
               textAnchor="end"
               interval={0}
               height={90}
               tick={{ fontSize: 13, fill: "#374151", fontWeight: 500 }}
-              tickMargin={10}
             />
 
-            {/* Y-Axis */}
             <YAxis
               tick={{ fontSize: 13, fill: "#4b5563" }}
               label={{
@@ -53,7 +55,6 @@ const DistrictChart = ({ data }) => {
               tickLine={false}
             />
 
-            {/* Tooltip */}
             <Tooltip
               cursor={{ fill: "rgba(0,0,0,0.05)" }}
               contentStyle={{
@@ -69,7 +70,6 @@ const DistrictChart = ({ data }) => {
               ]}
             />
 
-            {/* Legend */}
             <Legend
               verticalAlign="bottom"
               align="center"
@@ -80,7 +80,6 @@ const DistrictChart = ({ data }) => {
               iconType="circle"
             />
 
-            {/* Bars */}
             <Bar
               dataKey="avg_days_employment"
               name="Avg Days Employment"
@@ -103,7 +102,6 @@ const DistrictChart = ({ data }) => {
 };
 
 export default DistrictChart;
-
 
 
 
