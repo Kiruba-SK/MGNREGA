@@ -52,7 +52,7 @@ const DistrictChart = ({ data }) => {
     <div className="w-full h-[36rem] bg-gradient-to-b from-white to-gray-50 p-10 rounded-2xl shadow-lg border border-gray-200">
       {/* Title and Filter */}
       <div className="flex flex-col md:flex-row justify-between items-center mb-8">
-        <h2 className="text-2xl font-bold text-gray-700 tracking-wide text-center md:text-left">
+        <h2 className="text-2xl font-bold text-gray-600 tracking-wide text-center md:text-left">
           {titleText}
         </h2>
 

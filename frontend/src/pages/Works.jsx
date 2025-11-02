@@ -57,7 +57,7 @@ const Works = () => {
   }));
 
   return (
-    <div className="p-12 min-h-screen bg-gray-50">
+    <div className="p-12 mx-10 min-h-screen bg-gray-50">
       {/* Page Title */}
       <h1 className="text-3xl font-bold text-center mb-4 text-green-700">
         Works & Expenditure
@@ -80,7 +80,7 @@ const Works = () => {
       <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-10">
         {/* Works Completed vs Ongoing */}
         <div className="bg-white p-8 rounded-2xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-300">
-          <h2 className="text-xl font-semibold text-center mb-5 text-gray-700">
+          <h2 className="text-xl font-semibold text-center mb-5 text-gray-600">
             Works Completed vs Ongoing
           </h2>
           <ResponsiveContainer width="100%" height={320}>
@@ -113,7 +113,7 @@ const Works = () => {
 
         {/* Total Expenditure by Top 10 Districts */}
         <div className="bg-white p-8 rounded-2xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-300">
-          <h2 className="text-xl font-semibold text-center mb-5 text-gray-700">
+          <h2 className="text-xl font-semibold text-center mb-5 text-gray-600">
             Total Expenditure of Top 10 Districts
           </h2>
           <ResponsiveContainer width="100%" height={320}>
