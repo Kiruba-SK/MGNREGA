@@ -182,17 +182,17 @@ const Districts = () => {
       </div>
 
       {/* Table Section */}
-      <div className="relative max-h-[500px] overflow-y-scroll border rounded-lg shadow-md pt-2 mb-10">
+      <div className="relative max-h-[1000px] overflow-y-scroll border rounded-lg shadow-md pt-2 mb-10">
         <table className="min-w-full border-collapse">
-          <thead className="sticky bg-gray-200 text-gray-700 z-10">
+          <thead className="sticky top-0 bg-gray-200 text-gray-700 z-10">
             <tr>
-              <th className="px-4 py-2 border">District</th>
-              <th className="px-4 py-2 border">Financial Year</th>
-              <th className="px-4 py-2 border">Month</th>
-              <th className="px-4 py-2 border">Avg Wage Rate</th>
-              <th className="px-4 py-2 border">Avg Days Employment</th>
-              <th className="px-4 py-2 border">Total Wages</th>
-              <th className="px-4 py-2 border">Total Expenditure</th>
+              <th className="px-4 pb-2 border">District</th>
+              <th className="px-4 pb-2 border">Financial Year</th>
+              <th className="px-4 pb-2 border">Month</th>
+              <th className="px-4 pb-2 border">Avg Wage Rate</th>
+              <th className="px-4 pb-2 border">Avg Days Employment</th>
+              <th className="px-4 pb-2 border">Total Wages</th>
+              <th className="px-4 pb-2 border">Total Expenditure</th>
             </tr>
           </thead>
           <tbody>
