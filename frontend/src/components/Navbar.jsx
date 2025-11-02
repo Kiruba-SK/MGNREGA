@@ -31,7 +31,7 @@ const Navbar = () => {
           <Link to="/works" className="hover:text-yellow-300 transition">Works</Link>
           <Link to="/about" className="hover:text-yellow-300 transition">About</Link>
 
-          {/* Login / Profile */}
+          {/* Login */}
           {isSignedIn ? (
             <div className="flex items-center space-x-3">
               <UserButton

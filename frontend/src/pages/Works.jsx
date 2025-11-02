@@ -7,7 +7,6 @@ import {
   Cell,
   Tooltip,
   ResponsiveContainer,
-  Legend,
 } from "recharts";
 
 const COLORS = [
@@ -27,8 +26,7 @@ const Works = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    AxiosInstance
-      .get("data/")
+    AxiosInstance.get("data/")
       .then((res) => setData(res.data))
       .catch((err) => console.error("Error fetching MGNREGA works data:", err));
   }, []);
@@ -59,7 +57,7 @@ const Works = () => {
   }));
 
   return (
-    <div className="p-10 min-h-screen bg-gray-50">
+    <div className="p-12 min-h-screen bg-gray-50">
       {/* Page Title */}
       <h1 className="text-3xl font-bold text-center mb-4 text-green-700">
         Works & Expenditure
@@ -68,7 +66,13 @@ const Works = () => {
       {/* Definition Section */}
       <motion.div className="max-w-4xl mx-auto text-center mb-10 text-gray-700">
         <p className="text-lg leading-relaxed">
-          MGNREGA Works and Expenditure highlight the implementation and financial progress of rural development projects under the Mahatma Gandhi National Rural Employment Guarantee Act. Activities such as water conservation, land development, and rural connectivity help improve rural livelihoods. The expenditure represents the total funds used for wages, materials, and administration, ensuring transparency and accountability across Tamil Nadu districts.
+          MGNREGA Works and Expenditure highlight the implementation and
+          financial progress of rural development projects under the Mahatma
+          Gandhi National Rural Employment Guarantee Act. Activities such as
+          water conservation, land development, and rural connectivity help
+          improve rural livelihoods. The expenditure represents the total funds
+          used for wages, materials, and administration, ensuring transparency
+          and accountability across Tamil Nadu districts.
         </p>
       </motion.div>
 
@@ -103,7 +107,6 @@ const Works = () => {
                   value.toLocaleString(undefined, { maximumFractionDigits: 0 })
                 }
               />
-              
             </PieChart>
           </ResponsiveContainer>
         </div>
@@ -128,7 +131,9 @@ const Works = () => {
                   `${name}: ${(percent * 100).toFixed(1)}%`
                 }
               >
-                
+                {expenditureData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.color} />
+                ))}
               </Pie>
               <Tooltip
                 formatter={(value) =>
@@ -136,7 +141,6 @@ const Works = () => {
                   value.toLocaleString(undefined, { maximumFractionDigits: 2 })
                 }
               />
-              
             </PieChart>
           </ResponsiveContainer>
         </div>
@@ -146,4 +150,3 @@ const Works = () => {
 };
 
 export default Works;
-

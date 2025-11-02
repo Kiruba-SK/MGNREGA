@@ -110,7 +110,7 @@ const Districts = () => {
   };
 
   return (
-    <div className="p-10">
+    <div className="p-12">
       <h1 className="text-3xl font-bold mb-6 text-center text-green-700">
         District-Wise Data
       </h1>
