@@ -90,9 +90,9 @@ const Works = () => {
                 outerRadius={100}
                 innerRadius={60}
                 labelLine={false}
-                label={({ name, percent }) =>
-                  `${name}: ${(percent * 100).toFixed(1)}%`
-                }
+                // label={({ name, percent }) =>
+                //   `${name}: ${(percent * 100).toFixed(1)}%`
+                // }
               >
                 {worksSummary.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.color} />
@@ -128,9 +128,9 @@ const Works = () => {
                 outerRadius={100}
                 innerRadius={60}
                 labelLine={false}
-                label={({ name, percent }) =>
-                  `${name}: ${(percent * 100).toFixed(1)}%`
-                }
+                // label={({ name, percent }) =>
+                //   `${name}: ${(percent * 100).toFixed(1)}%`
+                // }
               >
                 {expenditureData.map((entry, index) => (
                   <Cell key={`cell-exp-${index}`} fill={entry.color} />
