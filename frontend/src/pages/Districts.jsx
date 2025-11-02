@@ -184,7 +184,7 @@ const Districts = () => {
       {/* Table Section */}
       <div className="relative max-h-[500px] overflow-y-scroll border rounded-lg shadow-md pt-2 mb-10">
         <table className="min-w-full border-collapse">
-          <thead className="sticky top-0 bg-gray-200 text-gray-700 z-10">
+          <thead className="sticky bg-gray-200 text-gray-700 z-10">
             <tr>
               <th className="px-4 py-2 border">District</th>
               <th className="px-4 py-2 border">Financial Year</th>

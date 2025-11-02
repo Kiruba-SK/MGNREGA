@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 import {
   BarChart,
   Bar,
@@ -11,7 +11,7 @@ import {
 } from "recharts";
 
 const DistrictChart = ({ data }) => {
-  const [selectedMetric, setSelectedMetric] = useState("both"); // both | employment | wage
+  const [selectedMetric, setSelectedMetric] = useState("both"); 
 
   // --- Group & average data ---
   const groupedData = useMemo(() => {
