@@ -94,13 +94,11 @@ const Works = () => {
                   `${name}: ${(percent * 100).toFixed(1)}%`
                 }
               >
-                
+                {worksSummary.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.color} />
+                ))}
               </Pie>
-              <Tooltip
-                formatter={(value) =>
-                  value.toLocaleString(undefined, { maximumFractionDigits: 0 })
-                }
-              />
+              
               <Legend
                 verticalAlign="bottom"
                 height={36}
@@ -132,12 +130,7 @@ const Works = () => {
               >
                 
               </Pie>
-              <Tooltip
-                formatter={(value) =>
-                  "₹" +
-                  value.toLocaleString(undefined, { maximumFractionDigits: 2 })
-                }
-              />
+              
               <Legend
                 verticalAlign="bottom"
                 height={36}
@@ -153,10 +146,6 @@ const Works = () => {
 
 export default Works;
 
-// {expenditureData.map((entry, index) => (
-//                   <Cell key={`cell-exp-${index}`} fill={entry.color} />
-//                 ))}
 
-// {worksSummary.map((entry, index) => (
-//                   <Cell key={`cell-${index}`} fill={entry.color} />
-//                 ))}
+
+             
