@@ -98,12 +98,12 @@ const Works = () => {
                   <Cell key={`cell-${index}`} fill={entry.color} />
                 ))}
               </Pie>
-              
-              <Legend
-                verticalAlign="bottom"
-                height={36}
-                wrapperStyle={{ fontSize: 13 }}
+              <Tooltip
+                formatter={(value) =>
+                  value.toLocaleString(undefined, { maximumFractionDigits: 0 })
+                }
               />
+              
             </PieChart>
           </ResponsiveContainer>
         </div>
@@ -130,12 +130,13 @@ const Works = () => {
               >
                 
               </Pie>
-              
-              <Legend
-                verticalAlign="bottom"
-                height={36}
-                wrapperStyle={{ fontSize: 13 }}
+              <Tooltip
+                formatter={(value) =>
+                  "₹" +
+                  value.toLocaleString(undefined, { maximumFractionDigits: 2 })
+                }
               />
+              
             </PieChart>
           </ResponsiveContainer>
         </div>
@@ -146,6 +147,3 @@ const Works = () => {
 
 export default Works;
 
-
-
-             
